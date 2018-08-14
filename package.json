@@ -1,0 +1,20 @@
+{
+  "name": "questions-sharing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "env2": "^2.2.2",
+    "nodemon": "^1.18.3",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1"
+  },
+  "dependencies": {
+    "pg": "^7.4.3"
+  }
+}
