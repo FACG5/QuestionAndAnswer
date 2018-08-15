@@ -48,7 +48,7 @@ const router = (request, response) => {
   } else if (endpoint==="/deleteComment" && method == 'POST'){
     handlers.deleteComment(request,response);
   
-  }else {
+  } else {
     response.writeHead(404,{'contentType':'text/html'});
     response.end('<h2>Page Not Found</h2>');
   }

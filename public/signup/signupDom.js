@@ -1,7 +1,10 @@
 var email = document.getElementById("email");
 var password = document.getElementById("password");
 var confirmPassword = document.getElementById("confirmPassword");
+var nameInput = document.getElementById("name");
 var form = document.getElementsByTagName("form")[0];
+console.log(nameInput);
+
 
 var emailErr = document.getElementById("emailErr");
 var passwordErr = document.getElementById("passwordErr");
@@ -43,3 +46,37 @@ var checkConfirmPw = function() {
   }
 };
 
+// email.addEventListener("focusout",checkEmail);
+// password.addEventListener("focusout",checkPw);
+// confirmPassword.addEventListener("focusout",checkConfirmPw);
+
+form.addEventListener('submit',(event)=>{
+  // if(!checkEmail()||!checkPw()||!checkConfirmPw()) return e.preventDefault();
+event.preventDefault()
+var nameValue = nameInput.value ;
+var emailValue = email.value;
+var passwordValue = password.value;
+console.log(nameValue,emailValue,passwordValue);
+
+body={nameValue,emailValue,passwordValue};
+
+fetch('/signup',{
+  method: "POST",
+  body: JSON.stringify(body),
+  headers:{
+    "Content-Type": "application/json"
+  }
+}).then(res=>{
+ return res.json()
+
+  
+}).then(res=>{
+  if(res.msg=='suc') {return window.location='/login'
+}else{
+
+}
+
+  
+  
+})
+});

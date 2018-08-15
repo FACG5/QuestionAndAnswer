@@ -7,6 +7,8 @@ const addCommentQuery = require("../database/query/addCommentQuery")
 const deleteCommentQuery = require("../database/query/deleteCommentQuery")
 const cookieAndAuth = require("./cookieAndAuth")
 const dbCheckEmail = require("../database/query/dbCheckEmail")
+const bcrypt = require("bcryptjs")
+const addUserQuery = require("../database/query/add_user.js")
 getPublicPages = (target, req, res) => {
   const reqPage = {
     signup: "public/signup/signup.html",
@@ -44,6 +46,29 @@ getHome = (target, req, res) => {
 
 const postSignup = (request, response) => {
 
+  let newUser ="";
+     request.on("data",(chunk)=>{
+         newUser += chunk;
+     });
+     request.on("end",()=>{
+         const userObj = JSON.parse(newUser) 
+         console.log(userObj)
+         const {nameValue,emailValue,passwordValue} = userObj;
+        bcrypt.hash(passwordValue ,10 ,(err,hash)=>{
+          console.log(hash);
+          
+            addUserQuery(nameValue,emailValue,hash,(err,result)=>{
+              if(err){
+              response.end('failed')
+              }else{
+                response.end(JSON.stringify({msg:'suc'}))
+              }
+            
+
+            })
+        }) 
+     })
+     
 };
 
 const postLogin = (request, response) => {
@@ -179,4 +204,5 @@ module.exports = {
     addPost,
     deletePost,
     addComment,
-    deleteComment };
+    deleteComment
+ };
