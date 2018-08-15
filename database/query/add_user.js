@@ -1,11 +1,11 @@
 const dbConnection =require("./../db_connection.js");
 
-const signUpQuery= (name,email,password,cb)=>{
+const signUpQuery= (email,password,nickname,cb)=>{
   
 
     const sql = {
-        text:"INSERT INTO users (nickname,email,pass) VALUES ($1,$2,$3)",
-        values:[name,email,password]
+        text:"INSERT INTO users (email,pass,nickname) VALUES ($1,$2,$3) RETURNING *",
+        values:[email,password,nickname]
     }
     dbConnection.query(sql,(err, result)=>{
         if(err){

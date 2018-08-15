@@ -1,5 +1,9 @@
 container = document.getElementById("postscontainer");
 signout = document.getElementById("signout");
+// questioninput = document.getElementById('questioninput');
+// addpostbtn = document.getElementById("addpostbtn");
+
+
 
 window.onload = e => {
   container.innerHTML = "";
@@ -14,13 +18,18 @@ signout.onclick = e => {
   });
 };
 
-refreshPage = () => {
-  container.innerHTML = "";
-  request("GET", "/loadPosts", "", (err, res) => {
-    if (err) console.log(err.message);
-    else renderposts(res);
-  });
-};
+
+refreshPage = ()=>{
+    container.innerHTML = "";
+    request("GET", "/loadPosts", "", (err,res)=>{
+        if(err)
+        console.log(err.message);
+        else
+        renderposts(res);
+        
+    });
+}
+
 
 renderposts = res => {
   res.posts.forEach((element, i) => {

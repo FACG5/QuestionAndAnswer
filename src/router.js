@@ -47,28 +47,28 @@ const router = (request, response) => {
         response.writeHead(302, { location: "/login" });
         response.end();
       } else {
-        handlers.addPost(response);
+        handlers.addPost(response, token.id);
       }
     } else if (endpoint === "/deletePost" && method == "POST") {
       if (errauth) {
         response.writeHead(302, { location: "/login" });
         response.end();
       } else {
-        handlers.deletePost(request, response);
+        handlers.deletePost(request, response, token.id);
       }
     } else if (endpoint === "/addComment" && method == "POST") {
       if (errauth) {
         response.writeHead(302, { location: "/login" });
         response.end();
       } else {
-        handlers.addComment(request, response);
+        handlers.addComment(request, response, token.id);
       }
     } else if (endpoint === "/deleteComment" && method == "POST") {
       if (errauth) {
         response.writeHead(302, { location: "/login" });
         response.end();
       } else {
-        handlers.deleteComment(request, response);
+        handlers.deleteComment(request, response, token.id);
       }
     }else if(endpoint === "/signout" && method == "GET") {
       response.writeHead(200, { "Set-Cookie":"data=0;httpOnly;Max-Age=0" });
