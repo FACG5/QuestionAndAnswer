@@ -52,9 +52,9 @@ const postSignup = (request, response) => {
      request.on("data",(chunk)=>{
          newUser += chunk;
      });
+
      request.on("end",()=>{
-         const userObj = JSON.parse(newUser) 
-         console.log(userObj)
+         const userObj = JSON.parse(newUser)
          const {nameValue,emailValue,passwordValue} = userObj;
         bcrypt.hash(passwordValue ,10 ,(err,hash)=>{
           console.log(hash);

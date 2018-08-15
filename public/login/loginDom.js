@@ -22,7 +22,8 @@ loginButton.addEventListener("click", e => {
     password: password.value
   };
   request("POST", "/login", JSON.stringify(userData), (err, res) => {
-    if (err) return console.log(err);
+    if (err) return swal("", err, "error");
+
     window.location = "/";
   });
 });
