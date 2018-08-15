@@ -62,8 +62,11 @@ renderposts = res => {
 
           commentdeletebtn.onclick = e => {
             request("POST", "/deleteComment", element.id, (err, res) => {
-              if (err) swal("", err, "error");
-              else refreshPage();
+              if (err) return  swal(err.message,"","error");
+              swal("Deleted","","success").then(value=>{
+                refreshPage();
+              })
+              
             });
           };
           commentli.appendChild(commentdeletebtn);
