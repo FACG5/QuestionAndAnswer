@@ -2,10 +2,10 @@ var email = document.getElementById("email");
 var password = document.getElementById("password");
 var confirmPassword = document.getElementById("confirmPassword");
 var nameInput = document.getElementById("name");
-var form = document.getElementsByTagName("form")[0];
-console.log(nameInput);
-
-
+var emailErr = document.getElementById("emailErr");
+var passwordErr = document.getElementById("passwordErr");
+var confirmErr = document.getElementById("confirmErr");
+const submit = document.getElementById("submit");
 var emailErr = document.getElementById("emailErr");
 var passwordErr = document.getElementById("passwordErr");
 var confirmErr = document.getElementById("confirmErr");
@@ -46,42 +46,45 @@ var checkConfirmPw = function() {
   }
 };
 
-// email.addEventListener("focusout",checkEmail);
-// password.addEventListener("focusout",checkPw);
-// confirmPassword.addEventListener("focusout",checkConfirmPw);
-
-form.addEventListener('submit',(event)=>{
-  // if(!checkEmail()||!checkPw()||!checkConfirmPw()) return e.preventDefault();
-event.preventDefault()
-var nameValue = nameInput.value ;
-var emailValue = email.value;
-var passwordValue = password.value;
-console.log(nameValue,emailValue,passwordValue);
-
-body={nameValue,emailValue,passwordValue};
-
-fetch('/signup',{
-  method: "POST",
-  body: JSON.stringify(body),
-  headers:{
-    "Content-Type": "application/json"
-  }
-}).then(res=>{
- return res.json()
-
-  
-}).then(res=>{
-  console.log(res);
-  
-  if(res.msg==='suc') {
-    swal("", "Success SignUp , You Can login now ! ", "success");
-     window.location='/login'
-}else{
-  window.location='/signup'
-
+function displayErr(errElem, errMsg) {
+  errElem.innerText = errMsg;
 }
+email.addEventListener("focusout", checkEmail);
+password.addEventListener("focusout", checkPw);
+confirmPassword.addEventListener("focusout", checkConfirmPw);
 
-  
-  
-})
+submit.addEventListener("click", event => {
+  event.preventDefault();
+  if (!checkEmail() || !checkPw() || !checkConfirmPw()) {
+    swal("", "Please Enter Valid Data  ! ", "error");
+    event.preventDefault();
+  } else {
+    var nameValue = nameInput.value;
+    var emailValue = email.value;
+    var passwordValue = password.value;
+    console.log(nameValue, emailValue, passwordValue);
+
+    body = { nameValue, emailValue, passwordValue };
+
+    fetch("/signup", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        if (res.err) return swal(res.err, "", "error");
+        else if (res.msg === "suc") {
+          swal("", "Success SignUp , You Can login now ! ", "success").then(
+            value => {
+              window.location = "/login";
+            }
+          );
+        }
+      });
+  }
 });
