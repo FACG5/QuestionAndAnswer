@@ -111,14 +111,14 @@ const loadPosts = response => {
   });
 };
 
-const addPost = (request, response) => {
+const addPost = (request, response, userid) => {
   let newpost = "";
   request.on("data", chunk => {
     newpost += chunk;
   });
   request.on("end", () => {
-    newpost = JSON.parse(newpost);
-    addPostQuery(newpost, (err, res) => {
+    console.log(newpost);
+    addPostQuery(newpost, userid, (err, res) => {
       if (err) {
         response.end(JSON.stringify({ err: { message: err.message } }));
       } else {
@@ -165,14 +165,14 @@ const deletePost = (request, response) => {
   });
 };
 
-const addComment = (request, response) => {
+const addComment = (request, response, userid) => {
   let newcomment = "";
   request.on("data", chunk => {
     newcomment += chunk;
   });
   request.on("end", () => {
     newcomment = JSON.parse(newcomment);
-    addCommentQuery(newcomment, (err, res) => {
+    addCommentQuery(newcomment,userid, (err, res) => {
       if (err) {
         response.end(JSON.stringify({ err: { message: err.message } }));
       } else {
@@ -187,13 +187,13 @@ const addComment = (request, response) => {
   });
 };
 
-const deleteComment = (request, response) => {
+const deleteComment = (request, response, userid) => {
   let deletedcommentid = "";
   request.on("data", chunk => {
     deletedcommentid += chunk;
   });
   request.on("end", () => {
-    deleteCommentQuery(Number(deletedcommentid), (err, res) => {
+    deleteCommentQuery(Number(deletedcommentid),userid, (err, res) => {
       if (err) {
         response.end(JSON.stringify({ err: { message: err.message } }));
       } else {
