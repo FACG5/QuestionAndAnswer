@@ -22,7 +22,9 @@
             width:60%;
             height: 100%;
             margin:100px auto;
-            background: rgb(143, 229, 222)
+            background: rgb(143, 229, 222);
+            overflow-y: auto;
+
         }
         .post{
             width:70%;
@@ -31,25 +33,28 @@
             background: rgb(255, 230, 4);
             overflow-y: auto;
         }
+
+
     </style>
 </head>
 <body>
    
     <main>
+            <button id="signout" style="width:150px;height:30px">Log out</button>
+
         <div class="container" id="postscontainer">
+            
             <div class="post">
                     <button>delete</button>
                 <div class="q">
                     <p>what do feel now?</p>
                 </div>
-                <div class="comments">
                     <ul>
                         <li>comment 1<button>delete</button></li>
                         <li>comment 2<button>delete</button></li>
                         <li>comment 3<button>delete</button></li>
                         <li>comment 4<button>delete</button></li>
                     </ul>
-                </div>
                 <textarea rows="2" ></textarea>
                 <button>add comment</button>
             </div>
@@ -77,7 +82,7 @@
 
 <script src="/public/alertifyjs/alertify.min.js"></script>
 <script src="/public/scripts/fetch.js"></script>
-<!-- <script src="/public/home/home.js"></script> -->
+<script src="/public/home/home.js"></script>
 
 </body>
 </html>

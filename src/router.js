@@ -70,6 +70,12 @@ const router = (request, response) => {
       } else {
         handlers.deleteComment(request, response);
       }
+    }else if(endpoint === "/signout" && method == "GET") {
+      response.writeHead(200, { "Set-Cookie":"data=0;httpOnly;Max-Age=0" });
+      response.end(JSON.stringify({
+        err: null,
+        result: { message: "Signed out successfuly" }
+      }));
     } else {
       response.writeHead(404, { contentType: "text/html" });
       response.end("<h2>Page Not Found</h2>");
