@@ -54,7 +54,7 @@ const postSignup = (request, response) => {
     const userObj = JSON.parse(newUser);
     const { nameValue, emailValue, passwordValue } = userObj;
     bcrypt.hash(passwordValue, 10, (err, hash) => {
-      addUserQuery(nameValue, emailValue, hash, (err, result) => {
+      addUserQuery(emailValue, hash, nameValue, (err, result) => {
         if (err) {
           response.end(JSON.stringify({err:err.detail}));
         } else {

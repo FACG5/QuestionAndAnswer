@@ -3,8 +3,6 @@ signout = document.getElementById("signout");
 // questioninput = document.getElementById('questioninput');
 // addpostbtn = document.getElementById("addpostbtn");
 
-
-
 window.onload = e => {
   container.innerHTML = "";
 
@@ -18,18 +16,13 @@ signout.onclick = e => {
   });
 };
 
-
-refreshPage = ()=>{
-    container.innerHTML = "";
-    request("GET", "/loadPosts", "", (err,res)=>{
-        if(err)
-        console.log(err.message);
-        else
-        renderposts(res);
-        
-    });
-}
-
+refreshPage = () => {
+  container.innerHTML = "";
+  request("GET", "/loadPosts", "", (err, res) => {
+    if (err) console.log(err.message);
+    else renderposts(res);
+  });
+};
 
 renderposts = res => {
   res.posts.forEach((element, i) => {
@@ -62,8 +55,10 @@ renderposts = res => {
 
           commentdeletebtn.onclick = e => {
             request("POST", "/deleteComment", element.id, (err, res) => {
-              if (err) swal("", err, "error");
-              else refreshPage();
+              if (err) return swal(err.message, "", "error");
+              swal("Deleted", "", "success").then(value => {
+                refreshPage();
+              });
             });
           };
           commentli.appendChild(commentdeletebtn);
@@ -85,8 +80,10 @@ renderposts = res => {
           comment_text: commenttextarea.value
         };
         request("POST", "/addComment", JSON.stringify(obj), (err, res) => {
-          if (err) console.log(err.message);
-          else refreshPage();
+          if (err) return swal(err.message, "", "error");
+          swal("Added", "", "success").then(value => {
+            refreshPage();
+          });
         });
       };
       post.appendChild(postdeletebtn);
