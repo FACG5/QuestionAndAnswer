@@ -4,8 +4,6 @@ const request = (method, url, data, cb) => {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         var result = JSON.parse(xhr.responseText);
-        console.log(result);
-        console.log(result.result);
         if (result.err) {
           cb(result.err);
         } else {

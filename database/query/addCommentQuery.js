@@ -1,10 +1,10 @@
 const dbConnection = require("../db_connection")
 
-const addComment=(newcomment,userid,postid,cb)=>{
+const addComment=(newcomment,cb)=>{
   
         sql = {
           text : "INSERT INTO comments (user_id,post_id,comment_text) VALUES ($1,$2,$3)",
-          values:[userid,postid,newcomment.comment_text]
+          values:[2,newcomment.post_id,newcomment.comment_text]
         } 
        
         dbConnection.query(sql,(err,res)=>{
