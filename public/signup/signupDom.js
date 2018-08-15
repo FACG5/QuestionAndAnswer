@@ -46,7 +46,12 @@ var checkConfirmPw = function() {
   }
 };
 
+// email.addEventListener("focusout",checkEmail);
+// password.addEventListener("focusout",checkPw);
+// confirmPassword.addEventListener("focusout",checkConfirmPw);
+
 form.addEventListener('submit',(event)=>{
+  // if(!checkEmail()||!checkPw()||!checkConfirmPw()) return e.preventDefault();
 event.preventDefault()
 var nameValue = nameInput.value ;
 var emailValue = email.value;
@@ -62,8 +67,16 @@ fetch('/signup',{
     "Content-Type": "application/json"
   }
 }).then(res=>{
-  console.log(res);
+ return res.json()
 
+  
+}).then(res=>{
+  if(res.msg=='suc') {return window.location='/login'
+}else{
+
+}
+
+  
   
 })
 });
