@@ -1,6 +1,6 @@
 const { parse } = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
-require("env2")("./confing.env");
+require("env2")("./config.env");
 
 const createCookie = (userId, cb) => {
   const data = {

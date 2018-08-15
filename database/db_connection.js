@@ -2,6 +2,8 @@ const pg = require('pg')
 
 require('env2')('./config.env')
 let URL = process.env.DB_URL;
+console.log(URL);
+
 if(process.env.NODE_ENV=='test'){
     URL = process.env.DB_URL1;
     }

@@ -11,9 +11,12 @@ getPublicPages = (target, req, res) => {
   const reqPage = {
     signup: "public/signup/signup.html",
     login: "public/login/login.html",
-    static: req.rul
+    static: req.url
   };
-  fs.readFile(path.join(__dirname, "..", reqPage[target]), (err, file) => {
+const filePath = path.join(__dirname,"..", reqPage[target]);
+console.log(filePath+55);
+
+  fs.readFile(filePath,(err, file) => {
     res.writeHead(200);
 
     if (err) throw err;
