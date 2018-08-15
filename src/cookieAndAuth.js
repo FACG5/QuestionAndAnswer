@@ -7,21 +7,26 @@ const createCookie = (userId, cb) => {
     id: userId
   };
 
-  sign(data, SECRET, (err, result) => {
-    if (err) return Response.end({ err });
-    cb(result);
+
+  sign(data, process.env.SECRET, (err, result) => {
+    if (err) return cb(err);
+
+    cb(null, result);
   });
 };
 
-const authChek = cb => {
-  if (!requ.headers.cookie) return cb(err);
+const authChek = (request, cb) => {
+  if (!request.headers.cookie) return cb(new TypeError());
 
-  const { data } = parse(req.headers.cookie);
-  if (!data) return cb(err);
+  const { data } = parse(request.headers.cookie);
 
-  verify(data, process.env.SECRET, (err, res) => {
-    if (err) return cb(err);
-    cb(null, res);
+  if (!data) return cb(new TypeError());
+
+  verify(data, process.env.SECRET, (err, data) => {
+
+    if (err) return cb(new TypeError());
+    console.log(data);
+    cb(null, data);
   });
 };
 
