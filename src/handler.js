@@ -5,14 +5,18 @@ const addPostQuery = require("../database/query/addPostQuery");
 const deletePostQuery = require("../database/query/deletePostQuery")
 const addCommentQuery = require("../database/query/addCommentQuery")
 const deleteCommentQuery = require("../database/query/deleteCommentQuery")
-
+const cookieAndAuth = require("./cookieAndAuth")
+const dbCheckEmail = require("../database/query/dbCheckEmail")
 getPublicPages = (target, req, res) => {
   const reqPage = {
     signup: "public/signup/signup.html",
     login: "public/login/login.html",
-    static: req.rul
+    static: req.url
   };
-  fs.readFile(path.join(__dirname, "..", reqPage[target]), (err, file) => {
+const filePath = path.join(__dirname,"..", reqPage[target]);
+console.log(filePath+55);
+
+  fs.readFile(filePath,(err, file) => {
     res.writeHead(200);
 
     if (err) throw err;
@@ -43,6 +47,28 @@ const postSignup = (request, response) => {
 };
 
 const postLogin = (request, response) => {
+  const userDate = ''
+  request.on("data",chunk=>{
+    userDate+=chunk;
+  })
+  request.on('end',()=>{
+
+    userDate= JSON.parse(userDate);
+    dbCheckEmail(userDate.email,(err,dbResult)=>{
+
+      if (!dbResult.email) return response.end({err:"Email Not Found"})
+  bcrypt.compare(userDate.password,dbResult.pass,(err,res)=>{
+  if(err)return response.end({err})
+      if(res===false) return response.end({err:"Wrong Password !"})
+      cookieAndAuth.createCookie(dbResult.id,(err,token)=>{
+if(err) return response.end({err});
+        response.writeHead(302,{'Location':'/Home' , 'Set-Cookie':`data=${token};httpOnly;Max-Age=90000000`});
+      })
+  
+  
+  })
+  }) 
+  })
 
 };
 
