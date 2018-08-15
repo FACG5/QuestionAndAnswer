@@ -1,0 +1,129 @@
+
+*{
+
+    font-family: cairo;
+}
+
+::-webkit-scrollbar:horizontal {
+    background-color: lightgray;
+  }
+  ::-webkit-scrollbar:vertical {
+    background-color: #b6eff8;
+  }
+  ::-webkit-scrollbar:hover {
+    background-color: lightblue;
+  }
+#signout{
+    width: 40%;
+    margin:0 auto;
+    display: block;
+    margin-top: 3%;
+    border:none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    transition-duration: 0.4s;
+    background: #888383;
+    
+}
+
+
+  #signout:hover{
+  background: #9ea0a0;
+  }
+
+
+  .Delete{
+    width: 40%;
+    margin:0 auto;
+    display: block;
+    margin-top: 3%;
+    border:none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    transition-duration: 0.4s;
+    background: #888383;
+    
+  }
+
+  .Delete:hover{
+    background: #9ea0a0;
+    }
+  
+
+  html,body,main{
+    margin:0;
+    padding:0;
+    width:100%;
+    height: 100%;
+}
+body{
+    background: rgb(195, 206, 201)
+}
+
+.container{
+    padding: 0;
+    width:60%;
+    height: 100%;
+    margin:100px auto;
+    background: rgb(195, 206, 201)
+    
+
+}
+.post{
+    width:70%;
+    max-height: 30%;
+    margin: 5% auto;
+    background: rgb(240, 239, 239);
+    border-radius: 10px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.Question{
+
+    font-family: cairo;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto;
+    margin-left: 45%;
+}
+
+.DeleteButton
+{
+    width: 40%;
+    margin-left: 20%;
+    margin-top: 20px;
+    /* display: block; */
+    /* margin-top: 3%; */
+    border:none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    transition-duration: 0.4s;
+    background: #888383;
+    
+
+}
+
+.AddComment
+{
+    width: 40%;
+    margin:0 auto;
+    display: block;
+
+    border:none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    transition-duration: 0.4s;
+    background: #888383;
+    
+
+}
+
+li{
+
+    font-weight: bold;
+}
