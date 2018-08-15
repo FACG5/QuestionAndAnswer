@@ -9,7 +9,13 @@ const submit = document.getElementById("submit");
 var emailErr = document.getElementById("emailErr");
 var passwordErr = document.getElementById("passwordErr");
 var confirmErr = document.getElementById("confirmErr");
+const signin = document.getElementById("signin")
 
+signin.addEventListener("click",(e)=>{
+
+  e.preventDefault();
+  window.location = "/login";
+})
 var checkEmail = function() {
   if (email.validity.typeMismatch) {
     displayErr(emailErr, "Please enter a valid email address");
