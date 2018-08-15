@@ -1,4 +1,5 @@
 container = document.getElementById("postscontainer");
+signout = document.getElementById("signout");
 
 window.onload = (e)=>{
     container.innerHTML = "";
@@ -7,7 +8,15 @@ window.onload = (e)=>{
 
 }
 
-
+signout.onclick = (e)=>{
+    request("GET", "/signout", "", (err,res)=>{
+if(err)
+console.log(err.message);
+else
+window.location = "/login"
+        
+    });
+}
 
 refreshPage = ()=>{
     container.innerHTML = "";
