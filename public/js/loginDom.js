@@ -61,4 +61,5 @@ form.addEventListener("submit", function(event) {
   if (!checkConfirmPw()) {
     event.preventDefault();
   }
+  
 });
