@@ -71,8 +71,13 @@ fetch('/signup',{
 
   
 }).then(res=>{
-  if(res.msg=='suc') {return window.location='/login'
+  console.log(res);
+  
+  if(res.msg==='suc') {
+    swal("", "Success SignUp , You Can login now ! ", "success");
+     window.location='/login'
 }else{
+  window.location='/signup'
 
 }
 
