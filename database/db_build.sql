@@ -24,14 +24,10 @@ insert into students (first_name,surname,gender) values ('ahmad' , 'libda', 'mal
 ('mohammed' , 'hasan', 'male');
 
 insert into register(std_ID,course_name,trainer_name) values
-(1,'Math','Hussam'),
-(1,'Arabic','Ali'),
-(1,'English','Yousef'),
-(3,'Math','Hussam'),
-(4,'English','Yousef'),
-(2,'Math','Hussam'),
-(4,'Arabic','Ali'),
-(2,'Arabic','Ali'),
-(2,'English','Yousef');
+(1,'Whats Your Name?','Hussam'),
+(1,'Your Age ?','Ali'),
+(2,'Favourite Colour ?','Yousef'),
+(3,'Favourite player','Hussam'),
+
 
 COMMIT;

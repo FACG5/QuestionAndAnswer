@@ -53,7 +53,7 @@ renderposts = res => {
 
           commentdeletebtn.onclick = e => {
             request("POST", "/deleteComment", element.id, (err, res) => {
-              if (err) console.log(err.message);
+              if (err) swal("", err, "error");
               else refreshPage();
             });
           };
