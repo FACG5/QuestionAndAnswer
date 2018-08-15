@@ -16,7 +16,7 @@ const addPost = (newPost,userid, cb) => {
       else{
         let sql = {
           text: "INSERT INTO posts (user_id,post_text) VALUES ($1,$2)",
-          values: [userid, newPost.post_text]
+          values: [userid, newPost]
         };
         dbConnection.query(sql,(err,res)=>{
           if(err)

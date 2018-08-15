@@ -1,5 +1,9 @@
 container = document.getElementById("postscontainer");
 signout = document.getElementById("signout");
+// questioninput = document.getElementById('questioninput');
+// addpostbtn = document.getElementById("addpostbtn");
+
+
 
 window.onload = (e)=>{
     container.innerHTML = "";
@@ -17,6 +21,17 @@ window.location = "/login"
         
     });
 }
+
+// addpostbtn.onclick = (e)=>{
+
+// request("POST", "/addPost",questioninput.value , (err,res)=>{
+// if(err)
+// console.log(err.message);
+// else
+// refreshPage();
+// })
+// }
+
 
 refreshPage = ()=>{
     container.innerHTML = "";
