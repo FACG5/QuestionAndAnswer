@@ -1,8 +1,12 @@
+*{
 
+  font-family: "cairo";
+
+}
 body {
     margin: auto;
     max-width: 500px;
-    font-family: cairo;
+    font-family: "cairo";
     background: #22c1c3;  /* fallback for old browsers */
   background: -webkit-linear-gradient(left, #fdbb2d, #22c1c3);
   background: -o-linear-gradient(left, #fdbb2d, #22c1c3);
@@ -17,14 +21,14 @@ body {
   width: 70%;
   min-height: 1.5em;
   margin: 0.2em auto 0.5em;
-  font-size: 10px;
+  font-size: 15px;
   color: red;
   text-transform: uppercase;
   font-weight: bold;
 }
   h1 {
     text-align: center;
-    font-family: 'Righteous', cursive;
+    font-family: cairo;
   }
   input {
     display: block;
@@ -34,6 +38,8 @@ body {
     border:none;
     border-radius: 10px;
     font-weight: bold;
+    letter-spacing: 1px;
+
   }
   button{
     height: 40px;
@@ -44,6 +50,9 @@ body {
     font-size: 15px;
     font-weight: bold;
     transition-duration: 0.4s;
+    background: #0ad80a;
+    letter-spacing: 1px;
+
   }
   button:hover{
   background: #9ea0a0;

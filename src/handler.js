@@ -56,9 +56,9 @@ const postSignup = (request, response) => {
     bcrypt.hash(passwordValue, 10, (err, hash) => {
       addUserQuery(emailValue, hash, nameValue, (err, result) => {
         if (err) {
-          response.end(JSON.stringify({err:err.detail}));
+          response.end(JSON.stringify({ err: err.detail }));
         } else {
-          response.end(JSON.stringify({ err:null,msg: "suc" }));
+          response.end(JSON.stringify({ err: null, msg: "suc" }));
         }
       });
     });
@@ -72,9 +72,9 @@ const postLogin = (request, response) => {
   });
   request.on("end", () => {
     userDateParse = JSON.parse(userDate);
+    if(userDateParse.email.trim().length===0 || userDateParse.password.trim().length===0)
+    return response.end(JSON.stringify({ err: "Please ! Enter Your Email/Password" }));
     dbCheckEmail(userDateParse.email, (err, dbResult) => {
-      console.log(dbResult);
-
       if (!dbResult[0])
         return response.end(JSON.stringify({ err: "Email Not Found" }));
       bcrypt.compare(userDateParse.password, dbResult[0].pass, (err, res) => {
@@ -117,31 +117,41 @@ const addPost = (request, response, userid) => {
     newpost += chunk;
   });
   request.on("end", () => {
-    console.log(newpost);
-    addPostQuery(newpost, userid, (err, res) => {
-      if (err) {
-        response.end(JSON.stringify({ err: { message: err.message } }));
-      } else {
-        response.end(
-          JSON.stringify({
-            err: null,
-            result: { message: res + " records was added successfuly" }
-          })
-        );
-      }
-    });
+    newpost = JSON.parse(newpost);
+    console.log(newpost.trim().length);
+    
+    if (newpost.trim().length>0) {      
+      addPostQuery(newpost, userid, (err, res) => {
+        if (err) {
+          response.end(JSON.stringify({ err: err.message }));
+        } else {
+          response.end(
+            JSON.stringify({
+              err: null,
+              result: "Your post was added successfuly" 
+            })
+          );
+        }
+      });
+    } else {
+      response.end(
+        JSON.stringify({
+          err: "You Cant Add Empty Post !"
+        })
+      );
+    }
   });
 };
 
-const deletePost = (request, response) => {
+const deletePost = (request, response,id) => {
   let deletedpostid = "";
   request.on("data", chunk => {
     deletedpostid += chunk;
   });
   request.on("end", () => {
-    deletePostQuery(deletedpostid, (err, res) => {
+    deletePostQuery(deletedpostid,id, (err, res) => {
       if (err) {
-        response.end(JSON.stringify({ err: { message: err.message } }));
+        response.end(JSON.stringify({ err }));
       } else {
         if (Number(res) === 0) {
           response.end(
@@ -156,7 +166,7 @@ const deletePost = (request, response) => {
           response.end(
             JSON.stringify({
               err: null,
-              result: { message: res + " records was deleted successfuly" }
+              result:" records was deleted successfuly" 
             })
           );
         }
@@ -172,7 +182,7 @@ const addComment = (request, response, userid) => {
   });
   request.on("end", () => {
     newcomment = JSON.parse(newcomment);
-    addCommentQuery(newcomment,userid, (err, res) => {
+    addCommentQuery(newcomment, userid, (err, res) => {
       if (err) {
         response.end(JSON.stringify({ err: { message: err.message } }));
       } else {
@@ -193,7 +203,7 @@ const deleteComment = (request, response, userid) => {
     deletedcommentid += chunk;
   });
   request.on("end", () => {
-    deleteCommentQuery(Number(deletedcommentid),userid, (err, res) => {
+    deleteCommentQuery(Number(deletedcommentid), userid, (err, res) => {
       if (err) {
         response.end(JSON.stringify({ err: { message: err.message } }));
       } else {

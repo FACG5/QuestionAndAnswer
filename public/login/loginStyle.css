@@ -12,6 +12,15 @@ background: -o-linear-gradient(left, #fdbb2d, #22c1c3);
 background: linear-gradient(to right, #fdbb2d, #22c1c3);  /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+.error {
+  width: 70%;
+  min-height: 1.5em;
+  margin: 0.2em auto 0.5em;
+  font-size: 15px;
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 form {
   margin: auto;
 }
@@ -26,6 +35,9 @@ input {
   width: 90%;
   border:none;
   border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+
 }
 button{
   width: 40%;
@@ -35,6 +47,8 @@ button{
   font-size: 15px;
   font-weight: bold;
   transition-duration: 0.4s;
+  background: #0ad80a;
+  letter-spacing: 1px;
 }
 button:hover{
 background: #9ea0a0;

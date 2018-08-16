@@ -11,7 +11,7 @@ const request = (method, url, data, cb) => {
         }
       }
       else {
-        cb(new TypeError("Something is Error ! "));
+        cb("Error ! ");
       }
     
     }

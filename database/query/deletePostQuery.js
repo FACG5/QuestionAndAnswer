@@ -1,26 +1,38 @@
 const dbConnection = require("../db_connection");
 
-const deletePost = (id, cb) => {
+const deletePost = (id,userId, cb) => {
+
   let sql1 = {
-    text: "DELETE FROM comments WHERE post_id =$1",
-    values: [id]
-  };
+    text: "SELECT * FROM posts WHERE id = $1 AND user_id =$2",
+    values: [id,userId]
+  }
+
   let sql2 = {
-    text: "DELETE FROM posts WHERE id =$1",
-    values: [id]
-  };
+    text: "Delete FROM posts WHERE id = $1 AND user_id =$2",
+    values: [id,userId]
+  }
+
+  
+  
+
 
   dbConnection.query(sql1, (err, res) => {
     if (err) {
       cb(err);
     } else {
-      dbConnection.query(sql2, (err, res) => {
-        if (err) {
-          cb(err);
-        } else {
-          cb(null, res.rowCount);
-        }
-      });
+      if(res.rows.length!==0){
+        dbConnection.query(sql2, (err, res) => {
+          if (err) {
+            cb(err);
+          } else {
+            cb(null,res.rowCount);
+          }
+        });
+      }
+      else{
+        cb("You Can Only Delete Your Posts !")
+      }
+
     }
   });
 };
