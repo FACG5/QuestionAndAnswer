@@ -33,26 +33,14 @@ insert into users (email,pass,nickname) values
 ('mohammed' , '$2a$13$jpuDCy4ZM/OXAlk9Ncq7me.yDXFHpsvB88pL.VCYjTc9GBEYxGDQe', 'male');
 
 insert into posts(user_id,post_text) values
-(1,'Math'),
-(1,'Arabic'),
-(1,'English'),
-(3,'Math'),
-(4,'English'),
-(2,'Math'),
-(4,'Arabic'),
-(2,'Arabic'),
-(2,'English');
+(1,'Whats Your Name?'),
+(3,'Your Age'),
+(2,'Favourite Food'),
+(1,'Favourite team'),
+(2,'your opinion about GSG'),
+(4,'evaluate Your self'),
+(1,'Whats Your father Name?');
 
 
-insert into comments(user_id,post_id,comment_text) values
-(1,2,'Hussam'),
-(1,3,'Ali'),
-(1,3,'Yousef'),
-(3,2,'Hussam'),
-(4,4,'Yousef'),
-(2,4,'Hussam'),
-(4,4,'Ali'),
-(2,1,'Ali'),
-(2,1,'Yousef');
 
 COMMIT;

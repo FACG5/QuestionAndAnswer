@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,53 +10,28 @@
     <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
 
 </head>
+
 <body>
-   
+
     <main>
 
-            <button id="signout">Log out</button>
-
+        <button id="signout">Log out</button>
+        <div class="addPost">
+                <h3>Add New Post</h3>
+            <textarea name="" id="postText" cols="64" rows="2"></textarea>
+            <button id ="addPostButton"class="Add">add Post</button>
+        </div>
+<h3>Posts And Comments </h3>
         <div class="container" id="postscontainer">
-            
-            <div class="post">
-                    <button id="Delete">delete</button>
-                <div class="q">
-                    <p>what do feel now?</p>
-                </div>
-                    <ul>
-                        <li>comment 1<button>delete</button></li>
-                        <li>comment 2<button>delete</button></li>
-                        <li>comment 3<button>delete</button></li>
-                        <li>comment 4<button>delete</button></li>
-                    </ul>
-                <textarea rows="2" ></textarea>
-                <button>add comment</button>
-            </div>
 
-            <div class="post">
-                    <button>delete</button>
-                    <div class="q">
-                        <p>what do feel now?</p>
-                    </div>
-                    <div class="comments">
-                        <ul>
-                            <li>comment 1<button>delete</button></li>
-                            <li>comment 2<button>delete</button></li>
-                            <li>comment 3<button>delete</button></li>
-                            <li>comment 4<button>delete</button></li>
-                        </ul>
-                        <textarea rows="2" ></textarea>
-                        <button>add comment</button>
-                    </div>
-                </div>
 
         </div>
     </main>
     <footer></footer>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/public/alertifyjs/alertify.min.js"></script>
 <script src="/public/scripts/fetch.js"></script>
 <script src="/public/home/home.js"></script>
 
 </body>
+
 </html>

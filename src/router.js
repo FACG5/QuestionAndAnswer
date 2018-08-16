@@ -42,12 +42,14 @@ const router = (request, response) => {
       } else {
         handlers.loadPosts(response);
       }
-    } else if (endpoint == "/addPost" && method == "POST") {
+    } else if (endpoint === "/addPost" && method == "POST") {
       if (errauth) {
         response.writeHead(302, { location: "/login" });
         response.end();
       } else {
-        handlers.addPost(response, token.id);
+        
+
+        handlers.addPost(request, response, token.id);
       }
     } else if (endpoint === "/deletePost" && method == "POST") {
       if (errauth) {

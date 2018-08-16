@@ -1,3 +1,6 @@
+const addPostButton =document.getElementById("addPostButton");
+const postText = document.getElementById("postText") 
+
 container = document.getElementById("postscontainer");
 signout = document.getElementById("signout");
 // questioninput = document.getElementById('questioninput');
@@ -9,34 +12,59 @@ window.onload = e => {
   refreshPage();
 };
 
+
+addPostButton.addEventListener("click",(e)=>{
+  e.preventDefault();
+newPost = postText.value;
+request("POST","addPost",JSON.stringify(newPost),(err,res)=>{  
+if(err)return swal(err, "", "error");
+swal(res, "", "success").then((value)=>{
+  refreshPage();
+
+
+})
+
+})
+})
 signout.onclick = e => {
   request("GET", "/signout", "", (err, res) => {
-    if (err) console.log(err.message);
-    else window.location = "/login";
+    if (err) return swal(err, "", "error");
+    
+    swal(res.message, "", "success").then((value)=>{
+      window.location = "/login";
+
+    })
   });
 };
 
 refreshPage = () => {
   container.innerHTML = "";
+
   request("GET", "/loadPosts", "", (err, res) => {
-    if (err) console.log(err.message);
+    if (err) return swal(err.message, "", "error");
     else renderposts(res);
   });
 };
 
 renderposts = res => {
+
   res.posts.forEach((element, i) => {
     if (element.post_text !== null && element.post_text !== "") {
       const post = document.createElement("div");
       post.classList.add("post");
       const postdeletebtn = document.createElement("button");
-      postdeletebtn.textContent = "Delete Question";
+      postdeletebtn.textContent = "Delete Post";
       postdeletebtn.classList.add("Delete");
 
       postdeletebtn.onclick = e => {
         request("POST", "/deletePost", element.id, (err, res) => {
-          if (err) console.log(err.message);
-          else refreshPage();
+          if(err)return swal(err, "", "error");
+      
+
+          swal(res,"", "success").then((value)=>{
+            refreshPage();
+          
+          })
         });
       };
 
@@ -50,7 +78,7 @@ renderposts = res => {
           const commentli = document.createElement("li");
           commentli.textContent = element.comment_text;
           const commentdeletebtn = document.createElement("button");
-          commentdeletebtn.textContent = "delete comment";
+          commentdeletebtn.textContent = "Delete";
           commentdeletebtn.classList.add("DeleteButton");
 
           commentdeletebtn.onclick = e => {
