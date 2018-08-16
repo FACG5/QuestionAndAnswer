@@ -58,7 +58,7 @@ loginButton.addEventListener("click", e => {
       password: password.value
     };
     request("POST", "/login", JSON.stringify(userData), (err, res) => {
-      if (err) return swal("", err, "error");
+      if (err) return swal(err, "", "error");
   swal("Welcome Back ", "" , "success").then(value=>{
     window.location = "/";
 
